@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
@@ -344,7 +346,7 @@ app.post('/api/sync', (req, res) => {
     }
 });
 
-// Utility function to fetch CSV data from URL with retry logic
+// Utility function to fetch CSV data from URL with retry logic and redirect handling
 async function fetchCSVFromURL(url, retries = RETRY_CONFIG.maxRetries) {
     return new Promise((resolve, reject) => {
         const protocol = url.startsWith('https') ? https : http;
@@ -352,27 +354,40 @@ async function fetchCSVFromURL(url, retries = RETRY_CONFIG.maxRetries) {
             reject(new Error(`Request timeout after ${RETRY_CONFIG.timeout}ms`));
         }, RETRY_CONFIG.timeout);
 
-        protocol.get(url, (response) => {
-            clearTimeout(timeout);
+        function makeRequest(requestUrl) {
+            const requestProtocol = requestUrl.startsWith('https') ? https : http;
             
-            if (response.statusCode === 200) {
-                let data = '';
-                response.on('data', chunk => data += chunk);
-                response.on('end', () => resolve(data));
-            } else {
-                reject(new Error(`HTTP ${response.statusCode}: ${response.statusMessage}`));
-            }
-        }).on('error', (err) => {
-            clearTimeout(timeout);
-            if (retries > 0) {
-                console.log(`🔄 Retrying CSV fetch (${retries} attempts left)...`);
-                setTimeout(() => {
-                    fetchCSVFromURL(url, retries - 1).then(resolve).catch(reject);
-                }, RETRY_CONFIG.retryDelay);
-            } else {
-                reject(err);
-            }
-        });
+            requestProtocol.get(requestUrl, (response) => {
+                clearTimeout(timeout);
+                
+                // Handle redirects (301, 302, 307, 308)
+                if ([301, 302, 307, 308].includes(response.statusCode) && response.headers.location) {
+                    console.log(`🔄 Following redirect to: ${response.headers.location}`);
+                    makeRequest(response.headers.location);
+                    return;
+                }
+                
+                if (response.statusCode === 200) {
+                    let data = '';
+                    response.on('data', chunk => data += chunk);
+                    response.on('end', () => resolve(data));
+                } else {
+                    reject(new Error(`HTTP ${response.statusCode}: ${response.statusMessage}`));
+                }
+            }).on('error', (err) => {
+                clearTimeout(timeout);
+                if (retries > 0) {
+                    console.log(`🔄 Retrying CSV fetch (${retries} attempts left)...`);
+                    setTimeout(() => {
+                        fetchCSVFromURL(url, retries - 1).then(resolve).catch(reject);
+                    }, RETRY_CONFIG.retryDelay);
+                } else {
+                    reject(err);
+                }
+            });
+        }
+        
+        makeRequest(url);
     });
 }
 
