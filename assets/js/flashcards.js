@@ -19,12 +19,17 @@ class FlashcardManager {
 
     async loadFlashcards() {
         try {
-            this.flashcards = await window.vedanticApp.loadCSVData('flashcards.csv');
-            console.log('Loaded flashcards:', this.flashcards.length);
+            const response = await fetch('/api/flashcards');
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            this.flashcards = await response.json();
+            console.log('Loaded flashcards from API:', this.flashcards.length);
         } catch (error) {
-            console.error('Error loading flashcards:', error);
+            console.error('Error loading flashcards from API:', error);
             // Fallback to sample data
             this.flashcards = this.getSampleFlashcards();
+            console.log('Using sample flashcards data');
         }
     }
 
@@ -112,9 +117,9 @@ class FlashcardManager {
             flashcard.addEventListener('click', () => this.flipCard());
         }
 
-        // Navigation buttons
-        const prevButton = document.getElementById('prev-card');
-        const nextButton = document.getElementById('next-card');
+        // Navigation buttons  
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
         
         if (prevButton) {
             prevButton.addEventListener('click', () => this.previousCard());
@@ -267,31 +272,32 @@ class FlashcardManager {
     }
 
     updateCardContent(card) {
-        const sanskritTerm = document.getElementById('sanskrit-term');
-        const englishTerm = document.getElementById('english-term');
-        const meaning = document.getElementById('meaning');
-        const category = document.getElementById('card-category');
+        const sanskritTerm = document.getElementById('card-term');
+        const englishTerm = document.getElementById('card-english');
+        const meaning = document.getElementById('card-meaning');
 
         if (sanskritTerm) sanskritTerm.textContent = card.sanskrit_term;
         if (englishTerm) englishTerm.textContent = card.english_term;
         if (meaning) meaning.textContent = card.meaning;
-        if (category) category.textContent = card.category;
     }
 
     resetFlipState() {
-        const flashcard = document.getElementById('flashcard');
-        if (flashcard) {
-            flashcard.classList.remove('flipped');
+        const meaning = document.getElementById('card-meaning');
+        const hint = document.getElementById('flip-hint');
+        
+        if (meaning && hint) {
+            meaning.classList.add('hidden');
+            hint.style.display = 'block';
             this.isFlipped = false;
         }
     }
 
     updateProgressIndicator() {
-        const currentCard = document.getElementById('current-card');
-        const totalCards = document.getElementById('total-cards');
+        const progressElement = document.getElementById('card-progress');
         
-        if (currentCard) currentCard.textContent = this.currentIndex + 1;
-        if (totalCards) totalCards.textContent = this.filteredCards.length;
+        if (progressElement) {
+            progressElement.textContent = `Card ${this.currentIndex + 1} of ${this.filteredCards.length}`;
+        }
     }
 
     updateBookmarkButton(cardId) {
@@ -306,8 +312,8 @@ class FlashcardManager {
     }
 
     updateNavigation() {
-        const prevButton = document.getElementById('prev-card');
-        const nextButton = document.getElementById('next-card');
+        const prevButton = document.getElementById('prev-btn');
+        const nextButton = document.getElementById('next-btn');
         
         if (prevButton) {
             prevButton.disabled = this.currentIndex === 0;
@@ -335,10 +341,21 @@ class FlashcardManager {
     }
 
     flipCard() {
-        const flashcard = document.getElementById('flashcard');
-        if (flashcard) {
-            flashcard.classList.toggle('flipped');
-            this.isFlipped = !this.isFlipped;
+        const meaning = document.getElementById('card-meaning');
+        const hint = document.getElementById('flip-hint');
+        
+        if (meaning && hint) {
+            if (meaning.classList.contains('hidden')) {
+                // Show meaning
+                meaning.classList.remove('hidden');
+                hint.style.display = 'none';
+                this.isFlipped = true;
+            } else {
+                // Hide meaning
+                meaning.classList.add('hidden');
+                hint.style.display = 'block';
+                this.isFlipped = false;
+            }
         }
     }
 
