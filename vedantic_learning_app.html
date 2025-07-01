@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhyatma Vidya - The Path of Inner Knowledge</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap');
+        
+        :root {
+            --saffron: #FF9933;
+            --deep-saffron: #E6842A;
+            --white: #FFFFFF;
+            --cream: #FFF5E6;
+            --brown: #8B4513;
+            --dark-brown: #654321;
+            --gold: #FFD700;
+            --light-gold: #FFF8DC;
+            --shadow: rgba(139, 69, 19, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--light-gold) 100%);
+            color: var(--dark-brown);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-saffron) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .om-symbol {
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .name-input {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .name-input input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--saffron);
+            border-radius: 10px;
+            font-family: 'Crimson Text', serif;
+            background: var(--white);
+        }
+
+        .name-input input:focus {
+            outline: none;
+            border-color: var(--deep-saffron);
+            box-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
+        }
+
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px var(--shadow);
+            border: 2px solid var(--saffron);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px var(--shadow);
+            border-color: var(--deep-saffron);
+        }
+
+        .module-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .module-card p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--deep-saffron) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.4);
+        }
+
+        .flashcard {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px var(--shadow);
+            border: 2px solid var(--gold);
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flashcard:hover {
+            transform: scale(1.02);
+        }
+
+        .flashcard-term {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--saffron);
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-meaning {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--dark-brown);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--brown);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Crimson Text', serif;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--dark-brown);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress {
+            text-align: center;
+            font-weight: 600;
+            color: var(--brown);
+        }
+
+        .quiz-question {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 32px var(--shadow);
+            border: 2px solid var(--saffron);
+        }
+
+        .quiz-question h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: var(--light-gold);
+            border-color: var(--saffron);
+        }
+
+        .quiz-option.selected {
+            background: var(--saffron);
+            color: var(--white);
+            border-color: var(--deep-saffron);
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px var(--shadow);
+            border: 2px solid var(--gold);
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--saffron);
+            font-weight: 600;
+        }
+
+        .stat-label {
+            color: var(--brown);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sanskrit-quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--brown);
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1rem;
+            }
+            
+            .flashcard-term {
+                font-size: 1.5rem;
+            }
+            
+            .flashcard-meaning {
+                font-size: 1.1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .modules {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="om-symbol">ॐ</div>
+        <h1>Adhyatma Vidya</h1>
+        <p class="subtitle">आत्म-ज्ञान की यात्रा - Journey to Self-Realization</p>
+        <div class="sanskrit-quote">
+            "तत् त्वम् असि" - Thou Art That
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Welcome Section -->
+        <div id="welcome-section" class="welcome-section">
+            <h2 style="font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 1rem;">
+                Welcome, Seeker of Truth
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Embark on your journey of self-discovery through the timeless wisdom of Vedanta. 
+                Enter your name to begin your path towards enlightenment.
+            </p>
+            
+            <div class="name-input">
+                <input type="text" id="user-name" placeholder="Enter your name (e.g., Arjuna, Priya, etc.)" />
+            </div>
+            
+            <button class="btn" onclick="startJourney()">Begin Your Spiritual Journey</button>
+        </div>
+
+        <!-- Main Modules -->
+        <div id="main-modules" class="modules hidden">
+            <div class="module-card" onclick="showModule('learning')">
+                <h3>🕉️ Adhyayana (Learning)</h3>
+                <p>Explore sacred Vedantic concepts through interactive flashcards. Understand the profound teachings of Advaita, Karma, Dharma, and the path to Moksha.</p>
+                <div class="btn">Start Learning</div>
+            </div>
+
+            <div class="module-card" onclick="showModule('assessment')">
+                <h3>📿 Pariksha (Assessment)</h3>
+                <p>Test your understanding of Vedantic principles. Evaluate your grasp of Sanskrit terms, philosophical concepts, and spiritual wisdom.</p>
+                <div class="btn">Take Assessment</div>
+            </div>
+
+            <div class="module-card" onclick="showModule('analytics')">
+                <h3>📊 Pragati (Progress Analytics)</h3>
+                <p>Track your spiritual learning journey. Monitor your understanding, frequency of practice, and growth in Vedantic knowledge.</p>
+                <div class="btn">View Progress</div>
+            </div>
+        </div>
+
+        <!-- Learning Module -->
+        <div id="learning-module" class="hidden">
+            <h2 style="font-family: 'Cinzel', serif; color: var(--saffron); text-align: center; margin-bottom: 2rem;">
+                Adhyayana - Sacred Learning
+            </h2>
+            
+            <div class="sanskrit-quote">
+                "विद्याददाति विनयं" - Knowledge bestows humility
+            </div>
+
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-term" id="card-term">Atman</div>
+                <div class="flashcard-meaning hidden" id="card-meaning">
+                    The eternal, unchanging essence of an individual soul. The true Self that is identical with Brahman, 
+                    the ultimate reality. It is beyond body, mind, and ego - the witness consciousness that pervades all existence.
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="nav-btn" onclick="previousCard()" id="prev-btn">← Previous</button>
+                <div class="progress" id="card-progress">Card 1 of 8</div>
+                <button class="nav-btn" onclick="nextCard()" id="next-btn">Next →</button>
+            </div>
+
+            <button class="btn" onclick="showModule('main')" style="margin-top: 2rem;">Return to Modules</button>
+        </div>
+
+        <!-- Assessment Module -->
+        <div id="assessment-module" class="hidden">
+            <h2 style="font-family: 'Cinzel', serif; color: var(--saffron); text-align: center; margin-bottom: 2rem;">
+                Pariksha - Knowledge Assessment
+            </h2>
+            
+            <div class="sanskrit-quote">
+                "परीक्ष्य लोकान् कर्मचितान्" - After examining the worlds gained through action
+            </div>
+
+            <div class="quiz-question" id="quiz-container">
+                <h3 id="question-text">What is the meaning of 'Moksha' in Vedantic philosophy?</h3>
+                <div class="quiz-options" id="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(0)">Liberation from the cycle of birth and death</div>
+                    <div class="quiz-option" onclick="selectOption(1)">Accumulation of good karma</div>
+                    <div class="quiz-option" onclick="selectOption(2)">Meditation practice</div>
+                    <div class="quiz-option" onclick="selectOption(3)">Worship of deities</div>
+                </div>
+                <button class="btn" onclick="submitAnswer()" id="submit-btn" style="margin-top: 1rem;">Submit Answer</button>
+            </div>
+
+            <div class="navigation">
+                <div class="progress" id="quiz-progress">Question 1 of 5</div>
+            </div>
+
+            <button class="btn" onclick="showModule('main')" style="margin-top: 2rem;">Return to Modules</button>
+        </div>
+
+        <!-- Analytics Module -->
+        <div id="analytics-module" class="hidden">
+            <h2 style="font-family: 'Cinzel', serif; color: var(--saffron); text-align: center; margin-bottom: 2rem;">
+                Pragati - Your Spiritual Progress
+            </h2>
+            
+            <div class="sanskrit-quote">
+                "क्रमेण तु गुणोत्कर्षः" - Gradual improvement in qualities
+            </div>
+
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-sessions">12</div>
+                    <div class="stat-label">Total Learning Sessions</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="quiz-score">78%</div>
+                    <div class="stat-label">Average Quiz Score</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="concepts-learned">24</div>
+                    <div class="stat-label">Concepts Mastered</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="streak-days">7</div>
+                    <div class="stat-label">Day Learning Streak</div>
+                </div>
+            </div>
+
+            <div style="background: var(--white); border-radius: 15px; padding: 2rem; margin: 2rem 0; box-shadow: 0 8px 32px var(--shadow);">
+                <h3 style="font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 1rem;">Recent Learning Journey</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--cream);">✨ Completed: Understanding of Brahman and Atman</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--cream);">🕉️ Mastered: The Four Mahavakyas (Great Sayings)</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--cream);">📿 Learned: Difference between Maya and Reality</li>
+                    <li style="padding: 0.5rem 0;">🌟 Achieved: Understanding of Karma and Dharma relationship</li>
+                </ul>
+            </div>
+
+            <button class="btn" onclick="showModule('main')" style="margin-top: 2rem;">Return to Modules</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample flashcard data
+        const flashcards = [
+            {
+                term: "Atman",
+                meaning: "The eternal, unchanging essence of an individual soul. The true Self that is identical with Brahman, the ultimate reality. It is beyond body, mind, and ego - the witness consciousness that pervades all existence."
+            },
+            {
+                term: "Brahman",
+                meaning: "The ultimate, formless reality underlying all existence. The infinite, eternal, and unchanging truth that is the source and essence of all creation. It is both immanent and transcendent."
+            },
+            {
+                term: "Maya",
+                meaning: "The cosmic illusion or creative power that veils the true nature of reality. It is the force that makes the One appear as many, creating the phenomenal world of duality and separation."
+            },
+            {
+                term: "Moksha",
+                meaning: "Liberation or release from the cycle of birth, death, and rebirth (samsara). The ultimate goal of human life - the realization of one's true nature as identical with Brahman."
+            },
+            {
+                term: "Dharma",
+                meaning: "Righteous duty, moral law, or the natural order that sustains the universe. It encompasses ethical conduct, religious obligations, and the path that leads to spiritual evolution."
+            },
+            {
+                term: "Karma",
+                meaning: "The law of cause and effect governing all actions and their consequences. Every action creates impressions that influence future experiences, binding souls to the cycle of rebirth."
+            },
+            {
+                term: "Samsara",
+                meaning: "The endless cycle of birth, death, and rebirth driven by karma and ignorance of one's true nature. The wheel of existence from which liberation (moksha) is sought."
+            },
+            {
+                term: "Avidya",
+                meaning: "Ignorance or misunderstanding of one's true nature. The root cause of suffering that creates the illusion of separation between the individual soul and ultimate reality."
+            }
+        ];
+
+        // Sample quiz questions
+        const quizQuestions = [
+            {
+                question: "What is the meaning of 'Moksha' in Vedantic philosophy?",
+                options: [
+                    "Liberation from the cycle of birth and death",
+                    "Accumulation of good karma",
+                    "Meditation practice",
+                    "Worship of deities"
+                ],
+                correct: 0
+            },
+            {
+                question: "According to Advaita Vedanta, what is the relationship between Atman and Brahman?",
+                options: [
+                    "They are completely different",
+                    "Atman is a part of Brahman",
+                    "They are identical - One without a second",
+                    "Atman serves Brahman"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does 'Maya' represent in Vedantic understanding?",
+                options: [
+                    "A goddess of illusion",
+                    "The creative power that veils ultimate reality",
+                    "A type of meditation",
+                    "Sacred scriptures"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which of the following is a Mahavakya (Great Saying) from the Upanishads?",
+                options: [
+                    "Om Namah Shivaya",
+                    "Tat Tvam Asi (Thou Art That)",
+                    "Hare Krishna",
+                    "Gayatri Mantra"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the primary cause of suffering according to Vedanta?",
+                options: [
+                    "Physical pain",
+                    "Lack of wealth",
+                    "Avidya (ignorance of true nature)",
+                    "Bad karma from past lives"
+                ],
+                correct: 2
+            }
+        ];
+
+        let currentCard = 0;
+        let cardFlipped = false;
+        let currentQuestion = 0;
+        let selectedAnswer = -1;
+        let quizScore = 0;
+        let userName = "";
+
+        function startJourney() {
+            userName = document.getElementById('user-name').value.trim();
+            if (!userName) {
+                alert('Please enter your name to begin the journey, dear seeker.');
+                return;
+            }
+            
+            document.getElementById('welcome-section').classList.add('hidden');
+            document.getElementById('main-modules').classList.remove('hidden');
+            document.getElementById('main-modules').classList.add('fade-in');
+            
+            // Update welcome message
+            document.querySelector('.header .subtitle').textContent = `Welcome, ${userName} - Your path to enlightenment begins`;
+        }
+
+        function showModule(module) {
+            // Hide all modules
+            document.getElementById('main-modules').classList.add('hidden');
+            document.getElementById('learning-module').classList.add('hidden');
+            document.getElementById('assessment-module').classList.add('hidden');
+            document.getElementById('analytics-module').classList.add('hidden');
+
+            // Show selected module
+            if (module === 'main') {
+                document.getElementById('main-modules').classList.remove('hidden');
+            } else {
+                document.getElementById(module + '-module').classList.remove('hidden');
+            }
+
+            // Reset states
+            if (module === 'learning') {
+                currentCard = 0;
+                cardFlipped = false;
+                updateFlashcard();
+            } else if (module === 'assessment') {
+                currentQuestion = 0;
+                selectedAnswer = -1;
+                quizScore = 0;
+                updateQuiz();
+            }
+        }
+
+        function updateFlashcard() {
+            const card = flashcards[currentCard];
+            document.getElementById('card-term').textContent = card.term;
+            document.getElementById('card-meaning').textContent = card.meaning;
+            document.getElementById('card-progress').textContent = `Card ${currentCard + 1} of ${flashcards.length}`;
+            
+            // Reset flip state
+            cardFlipped = false;
+            document.getElementById('card-term').classList.remove('hidden');
+            document.getElementById('card-meaning').classList.add('hidden');
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentCard === 0;
+            document.getElementById('next-btn').disabled = currentCard === flashcards.length - 1;
+        }
+
+        function flipCard() {
+            cardFlipped = !cardFlipped;
+            if (cardFlipped) {
+                document.getElementById('card-term').classList.add('hidden');
+                document.getElementById('card-meaning').classList.remove('hidden');
+            } else {
+                document.getElementById('card-term').classList.remove('hidden');
+                document.getElementById('card-meaning').classList.add('hidden');
+            }
+        }
+
+        function nextCard() {
+            if (currentCard < flashcards.length - 1) {
+                currentCard++;
+                updateFlashcard();
+            }
+        }
+
+        function previousCard() {
+            if (currentCard > 0) {
+                currentCard--;
+                updateFlashcard();
+            }
+        }
+
+        function updateQuiz() {
+            const question = quizQuestions[currentQuestion];
+            document.getElementById('question-text').textContent = question.question;
+            document.getElementById('quiz-progress').textContent = `Question ${currentQuestion + 1} of ${quizQuestions.length}`;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quiz-option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            selectedAnswer = -1;
+        }
+
+        function selectOption(index) {
+            // Remove previous selection
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            document.querySelectorAll('.quiz-option')[index].classList.add('selected');
+            selectedAnswer = index;
+        }
+
+        function submitAnswer() {
+            if (selectedAnswer === -1) {
+                alert('Please select an answer before submitting, dear seeker.');
+                return;
+            }
+            
+            const question = quizQuestions[currentQuestion];
+            if (selectedAnswer === question.correct) {
+                quizScore++;
+            }
+            
+            currentQuestion++;
+            
+            if (currentQuestion < quizQuestions.length) {
+                updateQuiz();
+            } else {
+                // Quiz completed
+                const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+                alert(`Quiz completed! Your score: ${quizScore}/${quizQuestions.length} (${percentage}%)\n\nMay this knowledge guide you on your path to enlightenment.`);
+                showModule('main');
+            }
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some dynamic analytics
+            document.getElementById('total-sessions').textContent = Math.floor(Math.random() * 20) + 5;
+            document.getElementById('quiz-score').textContent = (Math.floor(Math.random() * 30) + 70) + '%';
+            document.getElementById('concepts-learned').textContent = Math.floor(Math.random() * 15) + 20;
+            document.getElementById('streak-days').textContent = Math.floor(Math.random() * 10) + 3;
+        });
+    </script>
+</body>
+</html>

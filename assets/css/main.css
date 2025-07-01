@@ -1,0 +1,561 @@
+/* Main Application Styles */
+
+/* Screen Management */
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Welcome Screen */
+#welcome-screen {
+    background: linear-gradient(135deg, var(--background-cream) 0%, #fff8f0 100%);
+}
+
+.welcome-content {
+    max-width: 500px;
+    padding: var(--spacing-lg);
+}
+
+.om-symbol {
+    font-size: 4rem;
+    color: var(--primary-saffron);
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+}
+
+.app-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xxl);
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-sm);
+}
+
+.app-subtitle {
+    font-family: var(--font-sanskrit);
+    font-size: var(--font-size-lg);
+    color: var(--accent-brown);
+    font-weight: 600;
+}
+
+.welcome-text {
+    font-size: var(--font-size-lg);
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-lg);
+}
+
+.name-input-section {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Module Cards */
+.module-card {
+    background: var(--pure-white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-saffron);
+}
+
+.module-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.module-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-xs);
+}
+
+.module-subtitle {
+    font-family: var(--font-sanskrit);
+    font-size: var(--font-size-lg);
+    color: var(--primary-saffron);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.module-description {
+    font-size: var(--font-size-base);
+    color: var(--accent-brown);
+    line-height: 1.5;
+}
+
+/* Flashcard Styles */
+.flashcard-container {
+    perspective: 1000px;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.flashcard {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    cursor: pointer;
+}
+
+.flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.flashcard-front {
+    background: linear-gradient(135deg, var(--pure-white) 0%, var(--background-cream) 100%);
+    border: 3px solid var(--primary-saffron);
+}
+
+.flashcard-back {
+    background: linear-gradient(135deg, var(--primary-saffron) 0%, var(--secondary-gold) 100%);
+    color: var(--pure-white);
+    transform: rotateY(180deg);
+}
+
+.sanskrit-term {
+    font-family: var(--font-sanskrit);
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--primary-saffron);
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.english-term {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-md);
+}
+
+.flip-hint {
+    font-size: var(--font-size-base);
+    color: var(--accent-brown);
+    font-style: italic;
+    margin-top: auto;
+}
+
+.meaning {
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.card-category {
+    font-size: var(--font-size-base);
+    opacity: 0.9;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: rgba(255,255,255,0.2);
+    border-radius: var(--border-radius);
+}
+
+/* Flashcard Controls */
+.flashcard-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.progress-indicator {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    color: var(--text-brown);
+    font-weight: 600;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Filter Section */
+.filter-section {
+    background: var(--pure-white);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Quiz Styles */
+.quiz-section {
+    display: none;
+}
+
+.quiz-section.active {
+    display: block;
+}
+
+.quiz-setup-card {
+    background: var(--pure-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.quiz-setup-card h3 {
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-lg);
+}
+
+.quiz-progress {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.progress-text {
+    text-align: center;
+    font-family: var(--font-heading);
+    color: var(--text-brown);
+    font-weight: 600;
+}
+
+.question-card {
+    background: var(--pure-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.question-card h4 {
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    line-height: 1.4;
+}
+
+.option-btn {
+    text-align: left;
+    padding: var(--spacing-md);
+    border: 2px solid #ddd;
+    background: var(--pure-white);
+    color: var(--text-brown);
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--primary-saffron);
+    background: var(--background-cream);
+}
+
+.option-btn.selected {
+    border-color: var(--primary-saffron);
+    background: var(--primary-saffron);
+    color: var(--pure-white);
+}
+
+.option-btn.correct {
+    border-color: #28a745;
+    background: #28a745;
+    color: var(--pure-white);
+}
+
+.option-btn.incorrect {
+    border-color: #dc3545;
+    background: #dc3545;
+    color: var(--pure-white);
+}
+
+.feedback-section {
+    background: var(--background-cream);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    border-left: 4px solid var(--primary-saffron);
+}
+
+.feedback-message {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.feedback-message.correct {
+    color: #28a745;
+}
+
+.feedback-message.incorrect {
+    color: #dc3545;
+}
+
+.explanation {
+    font-size: var(--font-size-base);
+    color: var(--text-brown);
+    line-height: 1.6;
+}
+
+/* Quiz Results */
+.results-card {
+    background: var(--pure-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.score-display {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-bottom: var(--spacing-sm);
+}
+
+.score-number {
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--primary-saffron);
+    font-family: var(--font-heading);
+}
+
+.score-total {
+    font-size: 2rem;
+    color: var(--text-brown);
+    margin-left: var(--spacing-xs);
+}
+
+.score-percentage {
+    font-size: var(--font-size-xl);
+    color: var(--text-brown);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.encouragement-message {
+    font-size: var(--font-size-lg);
+    color: var(--accent-brown);
+    margin-bottom: var(--spacing-lg);
+}
+
+.sanskrit-quote {
+    background: var(--background-cream);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-saffron);
+}
+
+.quote {
+    font-family: var(--font-sanskrit);
+    font-size: var(--font-size-lg);
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-xs);
+}
+
+.quote-translation {
+    font-style: italic;
+    color: var(--accent-brown);
+    margin-bottom: 0;
+}
+
+/* Analytics Styles */
+.metric-card {
+    background: var(--pure-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--primary-saffron);
+}
+
+.metric-number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-saffron);
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-xs);
+}
+
+.metric-label {
+    font-size: var(--font-size-base);
+    color: var(--text-brown);
+    font-weight: 600;
+}
+
+.performance-card, .achievements-card {
+    background: var(--pure-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.performance-card h4, .achievements-card h4 {
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--primary-saffron);
+    padding-bottom: var(--spacing-sm);
+}
+
+.category-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+}
+
+.category-name {
+    flex: 0 0 150px;
+    font-weight: 600;
+    color: var(--text-brown);
+}
+
+.progress {
+    flex: 1;
+}
+
+.category-score {
+    flex: 0 0 60px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-saffron);
+}
+
+/* Achievement System */
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.achievement-badge {
+    text-align: center;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    border: 2px solid #ddd;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.achievement-badge.earned {
+    border-color: var(--primary-saffron);
+    background: var(--background-cream);
+    box-shadow: var(--shadow-sm);
+}
+
+.badge-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.badge-name {
+    font-weight: 600;
+    color: var(--text-brown);
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-heading);
+}
+
+.badge-description {
+    font-size: 0.9rem;
+    color: var(--accent-brown);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .flashcard {
+        height: 350px;
+    }
+    
+    .sanskrit-term {
+        font-size: 2.5rem;
+    }
+    
+    .flashcard-controls {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .action-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .category-item {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .category-name {
+        flex: none;
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .category-score {
+        flex: none;
+        text-align: center;
+        margin-top: var(--spacing-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-content {
+        padding: var(--spacing-md);
+    }
+    
+    .om-symbol {
+        font-size: 3rem;
+    }
+    
+    .app-title {
+        font-size: 1.8rem;
+    }
+    
+    .module-card {
+        min-height: 240px;
+        padding: var(--spacing-md);
+    }
+    
+    .flashcard {
+        height: 300px;
+    }
+    
+    .sanskrit-term {
+        font-size: 2rem;
+    }
+    
+    .score-number {
+        font-size: 3rem;
+    }
+}

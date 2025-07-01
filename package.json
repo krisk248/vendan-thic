@@ -1,0 +1,48 @@
+{
+  "name": "adhyatma-vidya",
+  "version": "1.0.0",
+  "description": "Vedantic Knowledge Sharing App - A responsive web application for learning Vedantic concepts",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync": "node -e \"require('./server/server.js')\"",
+    "build": "echo \"No build step required for static frontend\"",
+    "lint": "echo \"Linting not configured\"",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "vedanta",
+    "philosophy",
+    "education",
+    "flashcards",
+    "quiz",
+    "sanskrit",
+    "spirituality",
+    "learning"
+  ],
+  "author": "Vedantic App Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vedantic-app/adhyatma-vidya.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vedantic-app/adhyatma-vidya/issues"
+  },
+  "homepage": "https://github.com/vedantic-app/adhyatma-vidya#readme"
+}

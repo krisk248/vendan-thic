@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhyatma Vidya - The Path of Inner Knowledge</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom Vedantic Styling -->
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --deep-saffron: #E6842A;
+            --white: #FFFFFF;
+            --cream: #FFF5E6;
+            --brown: #8B4513;
+            --dark-brown: #654321;
+            --gold: #FFD700;
+            --light-gold: #FFF8DC;
+            --shadow: rgba(139, 69, 19, 0.2);
+            --divine-gradient: linear-gradient(135deg, var(--saffron) 0%, var(--deep-saffron) 100%);
+            --sacred-gradient: linear-gradient(135deg, var(--cream) 0%, var(--light-gold) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--sacred-gradient);
+            color: var(--dark-brown);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .screen {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Header Styling */
+        .header {
+            background: var(--divine-gradient);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .om-symbol {
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 3s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 153, 51, 0.3);
+        }
+
+        .welcome-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--brown);
+        }
+
+        .name-input {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .name-input input {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--saffron);
+            border-radius: 15px;
+            font-family: 'Crimson Text', serif;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .name-input input:focus {
+            outline: none;
+            border-color: var(--deep-saffron);
+            box-shadow: 0 0 20px rgba(255, 153, 51, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Module Cards */
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .module-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            border: 2px solid var(--saffron);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 153, 51, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .module-card:hover::before {
+            left: 100%;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px var(--shadow);
+            border-color: var(--deep-saffron);
+        }
+
+        .module-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .module-subtitle {
+            color: var(--brown);
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .module-card p {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--dark-brown);
+        }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--divine-gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 153, 51, 0.4);
+            background: linear-gradient(135deg, var(--deep-saffron) 0%, var(--saffron) 100%);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 153, 51, 0.2);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--saffron) !important;
+            font-weight: 600;
+        }
+
+        .navbar-text {
+            color: var(--brown) !important;
+        }
+
+        /* Flashcard Styling */
+        .flashcard-container {
+            perspective: 1000px;
+            margin: 2rem 0;
+        }
+
+        .flashcard {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 15px 50px var(--shadow);
+            border: 3px solid var(--gold);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard:hover {
+            transform: rotateY(5deg) scale(1.02);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .flashcard-term {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--saffron);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .flashcard-english {
+            font-size: 1.5rem;
+            color: var(--brown);
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-meaning {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--dark-brown);
+            max-width: 600px;
+        }
+
+        /* Quiz Styling */
+        .quiz-question {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px var(--shadow);
+            border: 2px solid var(--saffron);
+        }
+
+        .quiz-question h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-option {
+            padding: 1.2rem;
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            background: var(--light-gold);
+            border-color: var(--saffron);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            background: var(--saffron);
+            color: var(--white);
+            border-color: var(--deep-saffron);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 50px var(--shadow);
+            border: 2px solid var(--gold);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--brown);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--saffron);
+            border-radius: 10px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--deep-saffron);
+            box-shadow: 0 0 10px rgba(255, 153, 51, 0.3);
+        }
+
+        .donation-section {
+            background: var(--light-gold);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid var(--gold);
+        }
+
+        .donation-amounts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .donation-amount {
+            padding: 1rem;
+            background: var(--white);
+            border: 2px solid var(--saffron);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .donation-amount:hover,
+        .donation-amount.selected {
+            background: var(--saffron);
+            color: var(--white);
+        }
+
+        /* Sanskrit Quote */
+        .sanskrit-quote {
+            text-align: center;
+            font-style: italic;
+            color: var(--brown);
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+        }
+
+        .sanskrit-quote .quote {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--saffron);
+        }
+
+        .sanskrit-quote .translation {
+            font-size: 1rem;
+            color: var(--brown);
+        }
+
+        /* Analytics */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px var(--shadow);
+            border: 2px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--saffron);
+            font-weight: 600;
+        }
+
+        .stat-label {
+            color: var(--brown);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1rem;
+            }
+            
+            .flashcard-term {
+                font-size: 2rem;
+            }
+            
+            .flashcard-meaning {
+                font-size: 1.1rem;
+            }
+            
+            .modules {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF9933">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <header class="header">
+            <div class="om-symbol">ॐ</div>
+            <h1>Adhyatma Vidya</h1>
+            <p class="subtitle">आत्म-ज्ञान की यात्रा - Journey to Self-Realization</p>
+            <div class="sanskrit-quote">
+                <div class="quote">"तत् त्वम् असि"</div>
+                <div class="translation">Thou Art That</div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="welcome-section fade-in">
+                <h2>Welcome, Seeker of Truth</h2>
+                <p class="welcome-text">
+                    Embark on your journey of self-discovery through the timeless wisdom of Vedanta. 
+                    Enter your name to begin your path towards enlightenment.
+                </p>
+                
+                <div class="name-input">
+                    <input type="text" id="user-name" placeholder="Enter your name (e.g., Arjuna, Priya, etc.)" maxlength="50" />
+                </div>
+                
+                <button class="btn" onclick="startJourney()">Begin Your Spiritual Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="main-screen" class="screen">
+        <header class="header">
+            <div class="om-symbol">ॐ</div>
+            <h1>Adhyatma Vidya</h1>
+            <p class="subtitle">Welcome, <span id="display-name"></span> - Your path to enlightenment continues</p>
+        </header>
+
+        <div class="container">
+            <div class="modules fade-in">
+                <div class="module-card" onclick="showScreen('learning-screen')">
+                    <h3>🕉️ Adhyayana</h3>
+                    <p class="module-subtitle">अध्ययन - Learning</p>
+                    <p>Explore sacred Vedantic concepts through interactive flashcards. Understand the profound teachings of Advaita, Karma, Dharma, and the path to Moksha.</p>
+                    <div class="btn">Start Learning</div>
+                </div>
+
+                <div class="module-card" onclick="showScreen('quiz-screen')">
+                    <h3>📿 Pariksha</h3>
+                    <p class="module-subtitle">परीक्षा - Assessment</p>
+                    <p>Test your understanding of Vedantic principles. Evaluate your grasp of Sanskrit terms, philosophical concepts, and spiritual wisdom.</p>
+                    <div class="btn">Take Assessment</div>
+                </div>
+
+                <div class="module-card" onclick="showScreen('analytics-screen')">
+                    <h3>📊 Pragati</h3>
+                    <p class="module-subtitle">प्रगति - Progress Analytics</p>
+                    <p>Track your spiritual learning journey. Monitor your understanding, frequency of practice, and growth in Vedantic knowledge.</p>
+                    <div class="btn">View Progress</div>
+                </div>
+
+                <div class="module-card" onclick="showScreen('contact-screen')">
+                    <h3>🙏 Sampark</h3>
+                    <p class="module-subtitle">संपर्क - Contact & Support</p>
+                    <p>Share your suggestions, connect with our community, and contribute to spreading Vedantic wisdom to seekers worldwide.</p>
+                    <div class="btn">Contact Us</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Screen -->
+    <div id="learning-screen" class="screen">
+        <div class="navbar">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
+                <span class="navbar-brand">Adhyayana - Sacred Learning</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="sanskrit-quote">
+                <div class="quote">"विद्याददाति विनयं"</div>
+                <div class="translation">Knowledge bestows humility</div>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="flashcard-term" id="card-term">Atman</div>
+                    <div class="flashcard-english" id="card-english">आत्मन्</div>
+                    <div class="flashcard-meaning hidden" id="card-meaning">
+                        The eternal, unchanging essence of an individual soul. The true Self that is identical with Brahman, 
+                        the ultimate reality. It is beyond body, mind, and ego - the witness consciousness that pervades all existence.
+                    </div>
+                    <div class="flip-hint" id="flip-hint">Click to reveal meaning</div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0; flex-wrap: wrap; gap: 1rem;">
+                <button class="btn" onclick="previousCard()" id="prev-btn" style="width: auto; padding: 0.8rem 1.5rem;">← Previous</button>
+                <div style="text-align: center; font-weight: 600; color: var(--brown);" id="card-progress">Card 1 of 8</div>
+                <button class="btn" onclick="nextCard()" id="next-btn" style="width: auto; padding: 0.8rem 1.5rem;">Next →</button>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn" onclick="shuffleCards()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">🔀 Shuffle</button>
+                <button class="btn" onclick="bookmarkCard()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--gold); color: var(--dark-brown);">⭐ Bookmark</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+        <div class="navbar">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
+                <span class="navbar-brand">Pariksha - Knowledge Assessment</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="sanskrit-quote">
+                <div class="quote">"परीक्ष्य लोकान् कर्मचितान्"</div>
+                <div class="translation">After examining the worlds gained through action</div>
+            </div>
+
+            <div class="quiz-question" id="quiz-container">
+                <h3 id="question-text">What is the meaning of 'Moksha' in Vedantic philosophy?</h3>
+                <div class="quiz-options" id="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(0)">Liberation from the cycle of birth and death</div>
+                    <div class="quiz-option" onclick="selectOption(1)">Accumulation of good karma</div>
+                    <div class="quiz-option" onclick="selectOption(2)">Meditation practice</div>
+                    <div class="quiz-option" onclick="selectOption(3)">Worship of deities</div>
+                </div>
+                <button class="btn" onclick="submitAnswer()" id="submit-btn" style="margin-top: 1rem;">Submit Answer</button>
+            </div>
+
+            <div style="text-align: center; font-weight: 600; color: var(--brown); margin: 2rem 0;" id="quiz-progress">Question 1 of 5</div>
+        </div>
+    </div>
+
+    <!-- Analytics Screen -->
+    <div id="analytics-screen" class="screen">
+        <div class="navbar">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
+                <span class="navbar-brand">Pragati - Your Spiritual Progress</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="sanskrit-quote">
+                <div class="quote">"क्रमेण तु गुणोत्कर्षः"</div>
+                <div class="translation">Gradual improvement in qualities</div>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-sessions">12</div>
+                    <div class="stat-label">Total Learning Sessions</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="quiz-score">78%</div>
+                    <div class="stat-label">Average Quiz Score</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="concepts-learned">24</div>
+                    <div class="stat-label">Concepts Mastered</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number" id="streak-days">7</div>
+                    <div class="stat-label">Day Learning Streak</div>
+                </div>
+            </div>
+
+            <div style="background: var(--white); border-radius: 20px; padding: 2.5rem; margin: 2rem 0; box-shadow: 0 15px 50px var(--shadow); border: 2px solid var(--gold);">
+                <h3 style="font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 1.5rem; font-size: 1.5rem;">Recent Learning Journey</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 1rem 0; border-bottom: 1px solid var(--cream); font-size: 1.1rem;">✨ Completed: Understanding of Brahman and Atman</li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid var(--cream); font-size: 1.1rem;">🕉️ Mastered: The Four Mahavakyas (Great Sayings)</li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid var(--cream); font-size: 1.1rem;">📿 Learned: Difference between Maya and Reality</li>
+                    <li style="padding: 1rem 0; font-size: 1.1rem;">🌟 Achieved: Understanding of Karma and Dharma relationship</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Screen -->
+    <div id="contact-screen" class="screen">
+        <div class="navbar">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
+                <span class="navbar-brand">Sampark - Contact & Support</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="sanskrit-quote">
+                <div class="quote">"सर्वे भवन्तु सुखिनः"</div>
+                <div class="translation">May all beings be happy</div>
+            </div>
+
+            <!-- Mission Statement -->
+            <div class="contact-section">
+                <h2 style="font-family: 'Cinzel', serif; color: var(--saffron); text-align: center; margin-bottom: 1.5rem;">Our Sacred Mission</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: var(--brown); margin-bottom: 2rem;">
+                    Adhyatma Vidya is dedicated to spreading the timeless wisdom of Vedanta to seekers around the world. 
+                    We believe that spiritual knowledge should be accessible to all, fostering inner transformation and 
+                    the realization of our true divine nature.
+                </p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-section">
+                <h3 style="font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 1.5rem;">Share Your Thoughts</h3>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Name *</label>
+                        <input type="text" id="contact-name" required placeholder="Your spiritual name or given name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email">Email *</label>
+                        <input type="email" id="contact-email" required placeholder="your.email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-category">Category</label>
+                        <select id="contact-category">
+                            <option value="general">General Inquiry</option>
+                            <option value="content">Content Suggestions</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" rows="5" required placeholder="Share your thoughts, suggestions, or questions..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Donation Section -->
+            <div class="donation-section">
+                <h3 style="font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 1rem; text-align: center;">Support Our Mission</h3>
+                <p style="text-align: center; margin-bottom: 1.5rem; color: var(--brown);">
+                    Help us continue spreading Vedantic wisdom and making spiritual education accessible to all seekers.
+                </p>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="donation-willing" style="margin-right: 0.5rem;">
+                        I am interested in supporting this platform financially
+                    </label>
+                </div>
+                
+                <div id="donation-details" class="hidden">
+                    <p style="margin: 1rem 0; color: var(--brown);">Select an amount you'd like to contribute:</p>
+                    <div class="donation-amounts">
+                        <div class="donation-amount" onclick="selectDonation('500')">₹500</div>
+                        <div class="donation-amount" onclick="selectDonation('1000')">₹1000</div>
+                        <div class="donation-amount" onclick="selectDonation('2500')">₹2500</div>
+                        <div class="donation-amount" onclick="selectDonation('5000')">₹5000</div>
+                        <div class="donation-amount" onclick="selectDonation('custom')">Custom</div>
+                    </div>
+                    
+                    <div class="form-group" id="custom-amount" style="display: none;">
+                        <label for="custom-donation">Custom Amount (₹)</label>
+                        <input type="number" id="custom-donation" placeholder="Enter amount">
+                    </div>
+                    
+                    <p style="font-size: 0.9rem; color: var(--brown); margin-top: 1rem; text-align: center;">
+                        <em>Donation processing will be available soon. Your interest helps us prioritize this feature.</em>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Community Links -->
+            <div class="contact-section">
+                <h3 style="font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 1rem; text-align: center;">Connect With Our Community</h3>
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 1rem; color: var(--brown);">Join fellow seekers on the path of self-realization</p>
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">📧 Newsletter</button>
+                        <button class="btn" style="width: auto; padding: 0.8rem 1.5rem; background: var(--gold); color: var(--dark-brown);">💬 Discussion Forum</button>
+                        <button class="btn" style="width: auto; padding: 0.8rem 1.5rem; background: var(--saffron);">📚 Study Groups</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/flashcards.js"></script>
+    <script src="assets/js/quiz.js"></script>
+    <script src="assets/js/analytics.js"></script>
+    
+    <!-- Contact specific JavaScript -->
+    <script>
+        // Contact form functionality
+        document.getElementById('donation-willing').addEventListener('change', function() {
+            const donationDetails = document.getElementById('donation-details');
+            if (this.checked) {
+                donationDetails.classList.remove('hidden');
+            } else {
+                donationDetails.classList.add('hidden');
+            }
+        });
+
+        function selectDonation(amount) {
+            // Remove previous selections
+            document.querySelectorAll('.donation-amount').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selection to clicked amount
+            event.target.classList.add('selected');
+            
+            // Show/hide custom amount input
+            const customAmount = document.getElementById('custom-amount');
+            if (amount === 'custom') {
+                customAmount.style.display = 'block';
+            } else {
+                customAmount.style.display = 'none';
+            }
+        }
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                category: document.getElementById('contact-category').value,
+                message: document.getElementById('contact-message').value,
+                donation_willing: document.getElementById('donation-willing').checked
+            };
+            
+            try {
+                const response = await fetch('/api/contact/suggestion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    alert('Thank you for your message! We will get back to you soon.');
+                    document.getElementById('contact-form').reset();
+                    document.getElementById('donation-details').classList.add('hidden');
+                } else {
+                    alert('There was an error sending your message. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error sending your message. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

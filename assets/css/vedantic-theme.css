@@ -1,0 +1,225 @@
+/* Vedantic Theme - Sacred Saffron Color Palette */
+:root {
+    /* Primary Colors */
+    --primary-saffron: #FF9933;
+    --secondary-gold: #FFD700;
+    --background-cream: #FFF5E6;
+    --text-brown: #654321;
+    --accent-brown: #8B4513;
+    --pure-white: #FFFFFF;
+    
+    /* Font Families */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Crimson Text', serif;
+    --font-sanskrit: 'Noto Sans Devanagari', sans-serif;
+    
+    /* Font Sizes - Mobile First */
+    --font-size-base: 18px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-xxl: 32px;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Border Radius */
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(139, 69, 19, 0.1);
+    --shadow-md: 0 4px 8px rgba(139, 69, 19, 0.15);
+    --shadow-lg: 0 8px 16px rgba(139, 69, 19, 0.2);
+    
+    /* Minimum Touch Targets */
+    --min-touch-target: 44px;
+}
+
+/* Base Typography */
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-brown);
+    background-color: var(--background-cream);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-brown);
+    font-weight: 600;
+}
+
+.sanskrit-text {
+    font-family: var(--font-sanskrit);
+    font-weight: 600;
+}
+
+/* Primary Button Styles */
+.btn-primary {
+    background-color: var(--primary-saffron);
+    border-color: var(--primary-saffron);
+    color: var(--pure-white);
+    font-weight: 600;
+    min-height: var(--min-touch-target);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e68a2e;
+    border-color: #e68a2e;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 153, 51, 0.25);
+}
+
+/* Secondary Button Styles */
+.btn-secondary {
+    background-color: var(--secondary-gold);
+    border-color: var(--secondary-gold);
+    color: var(--text-brown);
+    min-height: var(--min-touch-target);
+}
+
+.btn-outline-primary {
+    color: var(--primary-saffron);
+    border-color: var(--primary-saffron);
+    min-height: var(--min-touch-target);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-saffron);
+    border-color: var(--primary-saffron);
+}
+
+/* Form Controls */
+.form-control, .form-select {
+    border-radius: var(--border-radius);
+    border: 2px solid #ddd;
+    font-size: var(--font-size-base);
+    min-height: var(--min-touch-target);
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-saffron);
+    box-shadow: 0 0 0 0.25rem rgba(255, 153, 51, 0.25);
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--pure-white) !important;
+    box-shadow: var(--shadow-sm);
+    border-bottom: 2px solid var(--primary-saffron);
+}
+
+.navbar-brand {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-brown) !important;
+}
+
+.om-symbol-small {
+    font-size: 1.2em;
+    color: var(--primary-saffron);
+}
+
+/* Progress Bars */
+.progress {
+    background-color: #f0f0f0;
+    border-radius: var(--border-radius);
+    height: 12px;
+}
+
+.progress-bar {
+    background-color: var(--primary-saffron);
+    border-radius: var(--border-radius);
+    transition: width 0.6s ease;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    background-color: var(--pure-white);
+}
+
+.card-header {
+    background-color: var(--background-cream);
+    border-bottom: 2px solid var(--primary-saffron);
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-saffron);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e68a2e;
+}
+
+/* Accessibility - High Contrast Focus */
+*:focus {
+    outline: 3px solid var(--primary-saffron);
+    outline-offset: 2px;
+}
+
+/* Responsive Typography */
+@media (min-width: 768px) {
+    :root {
+        --font-size-base: 16px;
+        --font-size-lg: 18px;
+        --font-size-xl: 22px;
+        --font-size-xxl: 28px;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --font-size-base: 16px;
+        --font-size-lg: 18px;
+        --font-size-xl: 20px;
+        --font-size-xxl: 24px;
+    }
+}
+
+/* Animation Utilities */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
