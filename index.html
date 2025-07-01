@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adhyatma Vidya - The Path of Inner Knowledge</title>
+    <title>Adhyatma vidya - The path of inner knowledge</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
@@ -115,6 +115,99 @@
             padding: 2rem 1rem;
         }
 
+        /* Mission Section */
+        .mission-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 153, 51, 0.3);
+        }
+
+        .mission-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: none;
+        }
+
+        .mission-text {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--brown);
+            line-height: 1.8;
+        }
+
+        .mission-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-card {
+            background: var(--cream);
+            padding: 2rem 1.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-card h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            text-transform: capitalize;
+        }
+
+        .highlight-card p {
+            color: var(--brown);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* About Section */
+        .about-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: rgba(255, 248, 220, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            border: 2px solid var(--gold);
+        }
+
+        .about-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: none;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: var(--brown);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         /* Welcome Section */
         .welcome-section {
             text-align: center;
@@ -132,6 +225,7 @@
             color: var(--saffron);
             font-size: 2rem;
             margin-bottom: 1rem;
+            text-transform: none;
         }
 
         .welcome-text {
@@ -169,6 +263,36 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+        }
+
+        /* Responsive grid adjustments */
+        @media (min-width: 1024px) {
+            .modules {
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                max-width: none;
+                margin: 2rem 0;
+                gap: 3rem;
+                padding: 0 2rem;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .modules {
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+                max-width: none;
+                margin: 2rem 0;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .modules {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .module-card {
@@ -270,6 +394,64 @@
             color: var(--brown) !important;
         }
 
+        /* Level Selection */
+        .level-selection {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .level-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .level-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 15px 50px var(--shadow);
+            border: 3px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .level-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px var(--shadow);
+            border-color: var(--saffron);
+        }
+
+        .level-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .level-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+
+        .level-card p {
+            color: var(--brown);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .level-card .btn {
+            margin-top: 1rem;
+        }
+
         /* Flashcard Styling */
         .flashcard-container {
             perspective: 1000px;
@@ -294,7 +476,6 @@
         }
 
         .flashcard:hover {
-            transform: rotateY(5deg) scale(1.02);
             box-shadow: 0 20px 60px var(--shadow);
         }
 
@@ -318,6 +499,68 @@
             color: var(--dark-brown);
             max-width: 600px;
         }
+
+        /* Analogy Styling */
+        .analogy-container {
+            margin: 2rem 0;
+        }
+
+        .analogy-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 50px var(--shadow);
+            border: 3px solid var(--gold);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .analogy-image-container {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .analogy-image-placeholder {
+            background: var(--cream);
+            border: 2px dashed var(--saffron);
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--saffron);
+        }
+
+        .analogy-image-placeholder p {
+            color: var(--brown);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .analogy-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--saffron);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .analogy-content p {
+            color: var(--dark-brown);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
 
         /* Quiz Styling */
         .quiz-question {
@@ -456,7 +699,8 @@
         .sanskrit-quote .quote {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--saffron);
+            color: var(--dark-brown);
+            font-weight: 600;
         }
 
         .sanskrit-quote .translation {
@@ -523,6 +767,82 @@
                 font-size: 1rem;
             }
             
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .om-symbol {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .mission-section, .about-section, .welcome-section {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .mission-section h2, .about-section h2, .welcome-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .mission-text, .about-text, .welcome-text {
+                font-size: 1.1rem;
+            }
+            
+            .mission-highlights {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .highlight-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .highlight-icon {
+                font-size: 2rem;
+            }
+            
+            .level-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .level-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .level-icon {
+                font-size: 3rem;
+            }
+            
+            .level-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .analogy-card {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                min-height: auto;
+            }
+            
+            .analogy-image-placeholder {
+                min-height: 200px;
+                padding: 2rem 1rem;
+            }
+            
+            .analogy-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .analogy-content p {
+                font-size: 1.1rem;
+            }
+            
+            
             .flashcard-term {
                 font-size: 2rem;
             }
@@ -531,12 +851,50 @@
                 font-size: 1.1rem;
             }
             
-            .modules {
-                grid-template-columns: 1fr;
+            .flashcard {
+                padding: 2rem 1.5rem;
+                min-height: 300px;
             }
+            
+            .module-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .module-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .name-input input {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
 
-            .container {
-                padding: 1rem 0.5rem;
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .mission-section, .about-section, .welcome-section {
+                padding: 1.5rem 0.8rem;
+            }
+            
+            .mission-section h2, .about-section h2, .welcome-section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .flashcard {
+                padding: 1.5rem 1rem;
+                min-height: 280px;
+            }
+            
+            .flashcard-term {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -550,7 +908,7 @@
     <div id="welcome-screen" class="screen active">
         <header class="header">
             <div class="om-symbol">ॐ</div>
-            <h1>Adhyatma Vidya</h1>
+            <h1>Adhyatma vidya</h1>
             <p class="subtitle">आत्म-ज्ञान की यात्रा - Journey to Self-Realization</p>
             <div class="sanskrit-quote">
                 <div class="quote">"तत् त्वम् असि"</div>
@@ -559,18 +917,57 @@
         </header>
 
         <div class="container">
+            <!-- Mission Statement -->
+            <div class="mission-section fade-in">
+                <h2>🕉️ What is vedantic learning?</h2>
+                <p class="mission-text">
+                    Vedanta, the culmination of Vedic wisdom, teaches us the profound truth of our essential nature. 
+                    It reveals that beneath the layers of body, mind, and ego lies our true Self - the eternal, 
+                    unchanging consciousness that is one with the universal spirit.
+                </p>
+                <div class="mission-highlights">
+                    <div class="highlight-card">
+                        <span class="highlight-icon">📿</span>
+                        <h4>Ancient wisdom</h4>
+                        <p>Timeless teachings from the Upanishads and sacred texts</p>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="highlight-icon">🧘</span>
+                        <h4>Self-realization</h4>
+                        <p>Understanding your true nature beyond body and mind</p>
+                    </div>
+                    <div class="highlight-card">
+                        <span class="highlight-icon">🌟</span>
+                        <h4>Inner peace</h4>
+                        <p>Finding lasting happiness through spiritual knowledge</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Our Mission -->
+            <div class="about-section fade-in">
+                <h2>🙏 Our sacred mission</h2>
+                <p class="about-text">
+                    We are on a divine mission to make Vedantic wisdom accessible to seekers around the world. 
+                    Through interactive learning, we help you understand Sanskrit terms, philosophical concepts, 
+                    and the practical application of these teachings in daily life. Our platform is designed 
+                    especially for those seeking deeper meaning and spiritual growth.
+                </p>
+            </div>
+
+            <!-- Name Input Section -->
             <div class="welcome-section fade-in">
-                <h2>Welcome, Seeker of Truth</h2>
+                <h2>✨ Enter your name to start the journey</h2>
                 <p class="welcome-text">
-                    Embark on your journey of self-discovery through the timeless wisdom of Vedanta. 
-                    Enter your name to begin your path towards enlightenment.
+                    Begin your path of self-discovery and spiritual learning. Let us know your name 
+                    so we can personalize your experience and track your progress on this sacred journey.
                 </p>
                 
                 <div class="name-input">
                     <input type="text" id="user-name" placeholder="Enter your name (e.g., Arjuna, Priya, etc.)" maxlength="50" />
                 </div>
                 
-                <button class="btn" onclick="startJourney()">Begin Your Spiritual Journey</button>
+                <button class="btn" onclick="startJourney()">Begin your spiritual journey</button>
             </div>
         </div>
     </div>
@@ -579,7 +976,7 @@
     <div id="main-screen" class="screen">
         <header class="header">
             <div class="om-symbol">ॐ</div>
-            <h1>Adhyatma Vidya</h1>
+            <h1>Adhyatma vidya</h1>
             <p class="subtitle">Welcome, <span id="display-name"></span> - Your path to enlightenment continues</p>
         </header>
 
@@ -589,28 +986,35 @@
                     <h3>🕉️ Adhyayana</h3>
                     <p class="module-subtitle">अध्ययन - Learning</p>
                     <p>Explore sacred Vedantic concepts through interactive flashcards. Understand the profound teachings of Advaita, Karma, Dharma, and the path to Moksha.</p>
-                    <div class="btn">Start Learning</div>
+                    <div class="btn">Start learning</div>
                 </div>
 
                 <div class="module-card" onclick="showScreen('quiz-screen')">
                     <h3>📿 Pariksha</h3>
                     <p class="module-subtitle">परीक्षा - Assessment</p>
                     <p>Test your understanding of Vedantic principles. Evaluate your grasp of Sanskrit terms, philosophical concepts, and spiritual wisdom.</p>
-                    <div class="btn">Take Assessment</div>
+                    <div class="btn">Take assessment</div>
                 </div>
 
                 <div class="module-card" onclick="showScreen('analytics-screen')">
                     <h3>📊 Pragati</h3>
-                    <p class="module-subtitle">प्रगति - Progress Analytics</p>
+                    <p class="module-subtitle">प्रगति - Progress analytics</p>
                     <p>Track your spiritual learning journey. Monitor your understanding, frequency of practice, and growth in Vedantic knowledge.</p>
-                    <div class="btn">View Progress</div>
+                    <div class="btn">View progress</div>
+                </div>
+
+                <div class="module-card" onclick="showScreen('analogy-screen')">
+                    <h3>🎨 Upama</h3>
+                    <p class="module-subtitle">उपमा - Sacred analogies</p>
+                    <p>Understand complex Vedantic concepts through beautiful visual analogies and metaphors that make deep truths accessible.</p>
+                    <div class="btn">Explore analogies</div>
                 </div>
 
                 <div class="module-card" onclick="showScreen('contact-screen')">
                     <h3>🙏 Sampark</h3>
-                    <p class="module-subtitle">संपर्क - Contact & Support</p>
+                    <p class="module-subtitle">संपर्क - Contact & support</p>
                     <p>Share your suggestions, connect with our community, and contribute to spreading Vedantic wisdom to seekers worldwide.</p>
-                    <div class="btn">Contact Us</div>
+                    <div class="btn">Contact us</div>
                 </div>
             </div>
         </div>
@@ -621,7 +1025,7 @@
         <div class="navbar">
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
                 <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
-                <span class="navbar-brand">Adhyayana - Sacred Learning</span>
+                <span class="navbar-brand">Adhyayana - Sacred learning</span>
             </div>
         </div>
 
@@ -631,37 +1035,122 @@
                 <div class="translation">Knowledge bestows humility</div>
             </div>
 
-            <div class="flashcard-container">
-                <div class="flashcard" id="flashcard" onclick="flipCard()">
-                    <div class="flashcard-term" id="card-term">Atman</div>
-                    <div class="flashcard-english" id="card-english">आत्मन्</div>
-                    <div class="flashcard-meaning hidden" id="card-meaning">
-                        The eternal, unchanging essence of an individual soul. The true Self that is identical with Brahman, 
-                        the ultimate reality. It is beyond body, mind, and ego - the witness consciousness that pervades all existence.
+            <!-- Level Selection -->
+            <div id="level-selection" class="level-selection">
+                <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 2rem;">Choose your learning level</h2>
+                
+                <div class="level-cards">
+                    <div class="level-card" onclick="startLearning('beginner')">
+                        <div class="level-icon">🌱</div>
+                        <h3>Beginner</h3>
+                        <p>Start with fundamental Vedantic concepts and basic Sanskrit terms. Perfect for those new to spiritual philosophy.</p>
+                        <div class="btn">Start beginner level</div>
                     </div>
-                    <div class="flip-hint" id="flip-hint">Click to reveal meaning</div>
+                    
+                    <div class="level-card" onclick="startLearning('intermediate')">
+                        <div class="level-icon">🧘</div>
+                        <h3>Intermediate</h3>
+                        <p>Build upon foundational knowledge with more complex concepts and deeper philosophical understanding.</p>
+                        <div class="btn">Start intermediate level</div>
+                    </div>
+                    
+                    <div class="level-card" onclick="startLearning('advanced')">
+                        <div class="level-icon">🕉️</div>
+                        <h3>Advanced</h3>
+                        <p>Explore deeper philosophical concepts, complex Sanskrit terminology, and advanced Vedantic principles.</p>
+                        <div class="btn">Start advanced level</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flashcard Container (initially hidden) -->
+            <div id="flashcard-content" class="hidden">
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-term" id="card-term">Atman</div>
+                        <div class="flashcard-english" id="card-english">आत्मन्</div>
+                        <div class="flashcard-meaning hidden" id="card-meaning">
+                            The eternal, unchanging essence of an individual soul. The true Self that is identical with Brahman, 
+                            the ultimate reality. It is beyond body, mind, and ego - the witness consciousness that pervades all existence.
+                        </div>
+                        <div class="flip-hint" id="flip-hint">Click to reveal meaning</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0; flex-wrap: wrap; gap: 1rem;">
+                    <button class="btn" onclick="previousCard()" id="prev-btn" style="width: auto; padding: 0.8rem 1.5rem;">← Previous</button>
+                    <div style="text-align: center; font-weight: 600; color: var(--brown);" id="card-progress">Card 1 of 8</div>
+                    <button class="btn" onclick="nextCard()" id="next-btn" style="width: auto; padding: 0.8rem 1.5rem;">Next →</button>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="showLevelSelection()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">🔄 Change level</button>
+                    <button class="btn" id="shuffle-cards" onclick="shuffleCards()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">🔀 Shuffle</button>
+                    <button class="btn" id="bookmark-card" onclick="bookmarkCard()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--gold); color: var(--dark-brown);">⭐ Bookmark</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analogy Screen -->
+    <div id="analogy-screen" class="screen">
+        <div class="navbar">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
+                <span class="navbar-brand">Upama - Sacred analogies</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="sanskrit-quote">
+                <div class="quote">"यथादर्शे तथात्मनि"</div>
+                <div class="translation">As in a mirror, so in the Self</div>
+            </div>
+
+            <div class="analogy-container">
+                <div class="analogy-card" id="analogy-card">
+                    <div class="analogy-image-container">
+                        <div class="analogy-image-placeholder">
+                            <span class="placeholder-icon">🖼️</span>
+                            <p>Image coming soon</p>
+                            <small style="color: var(--brown); font-style: italic; margin-top: 0.5rem; display: block;">
+                                Visual representation will be loaded from Google Sheets
+                            </small>
+                        </div>
+                    </div>
+                    <div class="analogy-content">
+                        <h3 id="analogy-title">The Snake and the Rope</h3>
+                        <p id="analogy-description">
+                            In darkness, one mistakes a rope for a snake and becomes frightened. Upon bringing light, 
+                            the snake disappears and only the rope remains. Similarly, through ignorance (avidya), 
+                            we superimpose the world upon Brahman and become bound by fear and desire. 
+                            When the light of knowledge dawns, the world as separate from Brahman disappears, 
+                            and only the one Reality remains.
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin: 2rem 0; flex-wrap: wrap; gap: 1rem;">
-                <button class="btn" onclick="previousCard()" id="prev-btn" style="width: auto; padding: 0.8rem 1.5rem;">← Previous</button>
-                <div style="text-align: center; font-weight: 600; color: var(--brown);" id="card-progress">Card 1 of 8</div>
-                <button class="btn" onclick="nextCard()" id="next-btn" style="width: auto; padding: 0.8rem 1.5rem;">Next →</button>
+                <button class="btn" onclick="previousAnalogy()" id="prev-analogy-btn" style="width: auto; padding: 0.8rem 1.5rem;">← Previous</button>
+                <div style="text-align: center; font-weight: 600; color: var(--brown);" id="analogy-progress">Analogy 1 of 5</div>
+                <button class="btn" onclick="nextAnalogy()" id="next-analogy-btn" style="width: auto; padding: 0.8rem 1.5rem;">Next →</button>
             </div>
 
             <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                <button class="btn" onclick="shuffleCards()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">🔀 Shuffle</button>
-                <button class="btn" onclick="bookmarkCard()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--gold); color: var(--dark-brown);">⭐ Bookmark</button>
+                <button class="btn" onclick="shuffleAnalogies()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">🔀 Shuffle</button>
+                <button class="btn" onclick="bookmarkAnalogy()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--gold); color: var(--dark-brown);">⭐ Bookmark</button>
             </div>
         </div>
     </div>
+
 
     <!-- Quiz Screen -->
     <div id="quiz-screen" class="screen">
         <div class="navbar">
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
                 <button class="btn" onclick="showScreen('main-screen')" style="width: auto; padding: 0.5rem 1rem;">← Back</button>
-                <span class="navbar-brand">Pariksha - Knowledge Assessment</span>
+                <span class="navbar-brand">Pariksha - Knowledge assessment</span>
             </div>
         </div>
 
@@ -671,18 +1160,46 @@
                 <div class="translation">After examining the worlds gained through action</div>
             </div>
 
-            <div class="quiz-question" id="quiz-container">
-                <h3 id="question-text">What is the meaning of 'Moksha' in Vedantic philosophy?</h3>
-                <div class="quiz-options" id="quiz-options">
-                    <div class="quiz-option" onclick="selectOption(0)">Liberation from the cycle of birth and death</div>
-                    <div class="quiz-option" onclick="selectOption(1)">Accumulation of good karma</div>
-                    <div class="quiz-option" onclick="selectOption(2)">Meditation practice</div>
-                    <div class="quiz-option" onclick="selectOption(3)">Worship of deities</div>
+            <!-- Quiz Level Selection -->
+            <div id="quiz-level-selection" class="level-selection">
+                <h2 style="text-align: center; font-family: 'Cinzel', serif; color: var(--saffron); margin-bottom: 2rem;">Choose your assessment level</h2>
+                
+                <div class="level-cards">
+                    <div class="level-card" onclick="startQuiz('beginner')">
+                        <div class="level-icon">🌱</div>
+                        <h3>Beginner</h3>
+                        <p>Test your understanding of basic Vedantic concepts and fundamental Sanskrit terms. Perfect for those starting their journey.</p>
+                        <div class="btn">Start beginner assessment</div>
+                    </div>
+                    
+                    <div class="level-card" onclick="startQuiz('advanced')">
+                        <div class="level-icon">🕉️</div>
+                        <h3>Advanced</h3>
+                        <p>Challenge yourself with complex philosophical questions, advanced Sanskrit terminology, and deeper Vedantic principles.</p>
+                        <div class="btn">Start advanced assessment</div>
+                    </div>
                 </div>
-                <button class="btn" onclick="submitAnswer()" id="submit-btn" style="margin-top: 1rem;">Submit Answer</button>
             </div>
 
-            <div style="text-align: center; font-weight: 600; color: var(--brown); margin: 2rem 0;" id="quiz-progress">Question 1 of 5</div>
+            <!-- Quiz Content (initially hidden) -->
+            <div id="quiz-content" class="hidden">
+                <div class="quiz-question" id="quiz-container">
+                    <h3 id="question-text">What is the meaning of 'Moksha' in Vedantic philosophy?</h3>
+                    <div class="quiz-options" id="quiz-options">
+                        <div class="quiz-option" onclick="selectOption(0)">Liberation from the cycle of birth and death</div>
+                        <div class="quiz-option" onclick="selectOption(1)">Accumulation of good karma</div>
+                        <div class="quiz-option" onclick="selectOption(2)">Meditation practice</div>
+                        <div class="quiz-option" onclick="selectOption(3)">Worship of deities</div>
+                    </div>
+                    <button class="btn" onclick="submitAnswer()" id="submit-btn" style="margin-top: 1rem;">Submit answer</button>
+                </div>
+
+                <div style="text-align: center; font-weight: 600; color: var(--brown); margin: 2rem 0;" id="quiz-progress">Question 1 of 5</div>
+                
+                <div style="display: flex; justify-content: center; margin-top: 2rem;">
+                    <button class="btn" onclick="showQuizLevelSelection()" style="width: auto; padding: 0.8rem 1.5rem; background: var(--brown);">🔄 Change level</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -852,6 +1369,64 @@
     
     <!-- Contact specific JavaScript -->
     <script>
+        // Learning level selection
+        window.startLearning = function(level) {
+            document.getElementById('level-selection').classList.add('hidden');
+            document.getElementById('flashcard-content').classList.remove('hidden');
+            console.log('Starting learning at level:', level);
+            
+            // Initialize or reinitialize flashcard manager
+            if (!window.flashcardManager) {
+                window.flashcardManager = new FlashcardManager();
+            }
+            
+            window.flashcardManager.setLevel(level);
+            window.flashcardManager.init();
+        };
+
+        window.showLevelSelection = function() {
+            document.getElementById('level-selection').classList.remove('hidden');
+            document.getElementById('flashcard-content').classList.add('hidden');
+        };
+
+        // Quiz level selection
+        window.startQuiz = function(level) {
+            document.getElementById('quiz-level-selection').classList.add('hidden');
+            document.getElementById('quiz-content').classList.remove('hidden');
+            console.log('Starting quiz at level:', level);
+            if (window.quizManager) {
+                window.quizManager.setLevel(level);
+                window.quizManager.init();
+            }
+        };
+
+        window.showQuizLevelSelection = function() {
+            document.getElementById('quiz-level-selection').classList.remove('hidden');
+            document.getElementById('quiz-content').classList.add('hidden');
+        };
+
+        // Analogy functionality (modal removed for simpler display)
+
+        window.previousAnalogy = function() {
+            // Implementation for previous analogy
+            console.log('Previous analogy');
+        };
+
+        window.nextAnalogy = function() {
+            // Implementation for next analogy
+            console.log('Next analogy');
+        };
+
+        window.shuffleAnalogies = function() {
+            // Implementation for shuffle analogies
+            console.log('Shuffle analogies');
+        };
+
+        window.bookmarkAnalogy = function() {
+            // Implementation for bookmark analogy
+            console.log('Bookmark analogy');
+        };
+
         // Contact form functionality
         document.getElementById('donation-willing').addEventListener('change', function() {
             const donationDetails = document.getElementById('donation-details');

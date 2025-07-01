@@ -6,7 +6,8 @@ class FlashcardManager {
         this.filteredCards = [];
         this.isFlipped = false;
         this.sessionStartTime = null;
-        this.init();
+        this.selectedLevel = null;
+        // Don't auto-initialize, wait for level selection
     }
 
     async init() {
@@ -111,10 +112,17 @@ class FlashcardManager {
     }
 
     setupEventListeners() {
-        // Flashcard flip
+        // Set up flashcard click listener
         const flashcard = document.getElementById('flashcard');
         if (flashcard) {
-            flashcard.addEventListener('click', () => this.flipCard());
+            // Remove existing listeners by cloning
+            const newFlashcard = flashcard.cloneNode(true);
+            flashcard.parentNode.replaceChild(newFlashcard, flashcard);
+            // Add new click listener
+            newFlashcard.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.flipCard();
+            });
         }
 
         // Navigation buttons  
@@ -227,6 +235,11 @@ class FlashcardManager {
         }
     }
 
+    setLevel(level) {
+        this.selectedLevel = level;
+        // Don't apply filters immediately - wait for init() to load flashcards first
+    }
+
     applyFilters() {
         const categoryFilter = document.getElementById('category-filter');
         const difficultyFilter = document.getElementById('difficulty-filter');
@@ -237,7 +250,8 @@ class FlashcardManager {
         this.filteredCards = this.flashcards.filter(card => {
             const categoryMatch = !selectedCategory || card.category === selectedCategory;
             const difficultyMatch = !selectedDifficulty || card.difficulty === selectedDifficulty;
-            return categoryMatch && difficultyMatch;
+            const levelMatch = !this.selectedLevel || card.difficulty.toLowerCase() === this.selectedLevel.toLowerCase();
+            return categoryMatch && difficultyMatch && levelMatch;
         });
 
         // Reset to first card when filters change
@@ -254,6 +268,9 @@ class FlashcardManager {
 
         const card = this.filteredCards[this.currentIndex];
         if (!card) return;
+
+        // Reset flip state
+        this.isFlipped = false;
 
         // Update card content
         this.updateCardContent(card);
@@ -442,8 +459,8 @@ class FlashcardManager {
     }
 }
 
-// Initialize flashcard manager
-window.flashcardManager = new FlashcardManager();
+// Don't auto-initialize - will be created when level is selected
+// window.flashcardManager = new FlashcardManager();
 
 // Cleanup on page unload
 window.addEventListener('beforeunload', () => {

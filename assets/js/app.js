@@ -95,6 +95,9 @@ class VedanticApp {
             targetScreen.classList.add('active');
             targetScreen.classList.add('fade-in');
             
+            // Scroll to top of the page
+            window.scrollTo(0, 0);
+            
             // Initialize screen-specific functionality
             this.initializeScreen(screenId);
         }
@@ -103,14 +106,14 @@ class VedanticApp {
     initializeScreen(screenId) {
         switch(screenId) {
             case 'learning-screen':
-                if (window.flashcardManager) {
-                    window.flashcardManager.init();
-                }
+                // Reset to level selection when entering learning screen
+                document.getElementById('level-selection').classList.remove('hidden');
+                document.getElementById('flashcard-content').classList.add('hidden');
                 break;
             case 'quiz-screen':
-                if (window.quizManager) {
-                    window.quizManager.init();
-                }
+                // Reset to level selection when entering quiz screen
+                document.getElementById('quiz-level-selection').classList.remove('hidden');
+                document.getElementById('quiz-content').classList.add('hidden');
                 break;
             case 'analytics-screen':
                 if (window.analyticsManager) {
@@ -392,7 +395,7 @@ window.shuffleCards = function() {
 
 window.bookmarkCard = function() {
     if (window.flashcardManager) {
-        window.flashcardManager.bookmarkCard();
+        window.flashcardManager.toggleBookmark();
     }
 };
 
